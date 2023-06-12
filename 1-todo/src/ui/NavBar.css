@@ -1,0 +1,43 @@
+.navbar {
+    height: 3rem;
+    background: #008000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.navbar li {
+    margin: 0 1.5rem;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar a:hover,
+.navbar a:active,
+.navbar a:visited {
+    color: lightgray;
+}
