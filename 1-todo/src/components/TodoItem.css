@@ -1,0 +1,21 @@
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.todo-item h2 {
+    margin: 0;
+}
+
+.todo-item p {
+    margin: 1rem 0;
+}
+
+.todo-item img {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 10px;
+    align-self: flex-end;
+}
