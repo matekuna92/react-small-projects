@@ -6,7 +6,7 @@ import './TodoList.css';
 
 const TodoList = (props) => {
   //  const todos = props.todos;
-    const todoStoreItems = useSelector(state => state.todoItems.todos);
+    const todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
 
     return (
         <ul className='todo-list'>
