@@ -4,19 +4,23 @@ import Card from "../ui/Card";
 import './TodoItem.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { completeTodo, editTodo, deleteTodo } from '../store/TodoActions';
+import { useDispatch } from 'react-redux';
+
 
 const TodoItem = (props) => {
+    const dispatch = useDispatch();
 
-    const todoCompleteHandler = (todoitem) => {
-props.onCompleteTodo(todoitem);
+    const todoCompleteHandler = () => {
+        dispatch(completeTodo(props.id));
     }
 
     const todoEditHandler = () => {
-
+        dispatch(editTodo(props.id));
     }
 
-    const todoDeleteHandler = (id) => {
-
+    const todoDeleteHandler = () => {
+        dispatch(deleteTodo(props.id));
     }
 
     return (
@@ -32,7 +36,7 @@ props.onCompleteTodo(todoitem);
                 </div>
             </li>
         </Card>
-    );
+        );
 }
 
 export default TodoItem;

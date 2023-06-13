@@ -23,10 +23,22 @@ const initialState = {
     ]
 };
 
-const todosReducer = (state, action) => {
+const todosReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'COMPLETE_TODO': {
-            console.log('state: ', state);
+            const todoIndex = state.todos.findIndex(todo => todo.id === action.todoId);
+            console.log('todoindex: ', todoIndex);
+            return state;
+
+        }
+        case 'EDIT_TODO': {
+            console.log('edit:');
+
+            return state;
+        }
+        case 'DELETE_TODO': {
+            console.log('delete:');
+
             return state;
         }
         default: return initialState;

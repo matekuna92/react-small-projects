@@ -12,6 +12,7 @@ const TodoList = (props) => {
         <ul className='todo-list'>
             {todoStoreItems.map(todo => (
                 <TodoItem
+                    id={todo.id}
                     key={todo.id}
                     title={todo.title}
                     desc={todo.desc}
