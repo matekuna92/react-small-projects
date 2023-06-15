@@ -50,9 +50,12 @@ const todosReducer = (state = initialState, action) => {
             return state;
         }
         case 'DELETE_TODO': {
-            console.log('delete:');
+            const updatedTodos = state.todos.filter(todo => todo.id !== action.todoId);
 
-            return state;
+            return {
+                ...state,
+                todos: updatedTodos
+            }
         }
         default: return initialState;
     } 
