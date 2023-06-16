@@ -1,21 +1,31 @@
 import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import TodoItem from "./TodoItem";
 import './TodoList.css';
 import Modal from "./Modal";
+import {addNewTodoItem} from "../store/TodoActions";
 
 const TodoList = () => {
-    const todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
+    let todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useDispatch();
+
     const addNewTodo = () => {
         setIsModalOpen(true);
+    }
+
+    const createNewTodo = (newItem) => {
+        console.log('newitem in todolist:', newItem);
+        dispatch(addNewTodoItem(newItem));
+        console.log('updated todos:', todoStoreItems);
+        setIsModalOpen(false);
     }
 
     return (
         <>
             <button className='add-todo-button' onClick={addNewTodo}>Add ToDo</button>
-            {isModalOpen && <Modal open={isModalOpen} />}
+            {isModalOpen && <Modal open={isModalOpen} onAddNewTodo={createNewTodo} />}
             <ul className='todo-list'>
                 {todoStoreItems.map(todo => (
                     <TodoItem

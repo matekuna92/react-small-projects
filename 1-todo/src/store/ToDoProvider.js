@@ -57,6 +57,14 @@ const todosReducer = (state = initialState, action) => {
                 todos: updatedTodos
             }
         }
+        case 'ADD_NEW_TODO_ITEM': {
+            const updatedTodos = [...state.todos, action.newItem];
+
+            return {
+                ...state,
+                todos: updatedTodos
+            }
+        }
         default: return initialState;
     } 
 };
