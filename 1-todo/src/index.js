@@ -4,14 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import todosReducer from "./store/ToDoProvider";
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 import {Provider} from "react-redux";
 
 const reducers = combineReducers({
     todoItems: todosReducer
 });
 
-const items = createStore(reducers);
+const loggerMiddleware = createLogger();
+
+const items = createStore(reducers, applyMiddleware(loggerMiddleware));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
