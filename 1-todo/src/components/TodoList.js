@@ -9,28 +9,27 @@ import {addNewTodoItem} from "../store/TodoActions";
 const TodoList = () => {
     let todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newTodos, setNewTodos] = useState([]);
     const dispatch = useDispatch();
 
-    const addNewTodo = () => {
-        setIsModalOpen(true);
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
     }
 
     const createNewTodo = (newItem) => {
         console.log('newitem in todolist:', newItem);
         dispatch(addNewTodoItem(newItem));
-       // console.log('updated todos:', todoStoreItems);
+       // console.log('updated todos:', todoStoreItems);    // logging only the 2 default todo items
         setIsModalOpen(false);
     }
 
     useEffect(() => {
-        console.log('current active todos: ', todoStoreItems)
+        console.log('current active todos: ', todoStoreItems)   // logging the current state when the array changes
     }, [todoStoreItems]);
 
     return (
         <>
-            <button className='add-todo-button' onClick={addNewTodo}>Add ToDo</button>
-            {isModalOpen && <Modal open={isModalOpen} onAddNewTodo={createNewTodo} />}
+            <button className='add-todo-button' onClick={toggleModal}>Add ToDo</button>
+            {isModalOpen && <Modal open={isModalOpen} onAddNewTodo={createNewTodo} toggleModal={toggleModal} />}
             <ul className='todo-list'>
                 {todoStoreItems.map(todo => (
                     <TodoItem

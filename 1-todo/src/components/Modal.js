@@ -8,10 +8,12 @@ import { useSelector } from "react-redux";
 
 const Modal = (props) => {
     let todoStoreItems = useSelector(state => state.todoItems.todos);
-    let open = props.open;
     const titleRef = useRef();
     const descRef = useRef();
-    const storeItemsLength = todoStoreItems.length;
+    const maxId = todoStoreItems.reduce((max, todo) => {
+        return todo.id > max ? todo.id : max;
+      }, 0);
+    console.log('maxTodoId: ', maxId);
 
 
     const addNewTodo = () => {
@@ -19,7 +21,7 @@ const Modal = (props) => {
         const desc = descRef.current.value;
 
         const newTodo = {
-            id: storeItemsLength + 1,
+            id: maxId + 1,
             title,
             desc,
             completed: false
@@ -29,12 +31,12 @@ const Modal = (props) => {
     }
 
     const closeModal = () => {
-        open = false;
+        props.toggleModal();
     }
 
     return (
         <>
-        <Backdrop />
+        <Backdrop onClick={closeModal} />
         <div className='modal'>
            <div className='modal-header'>
                <h2>Add new Todo</h2>
