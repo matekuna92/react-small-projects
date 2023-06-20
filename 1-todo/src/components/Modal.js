@@ -38,7 +38,7 @@ const Modal = (props) => {
         <div className='modal'>
            <div className='modal-header'>
                <h2>Add new Todo</h2>
-              <FontAwesomeIcon icon={faTimes} />
+              <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
             </div>
             <div className='modal-body'>
                 <label htmlFor='title'>Title</label>

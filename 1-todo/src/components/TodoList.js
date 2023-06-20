@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TodoItem from "./TodoItem";
@@ -19,9 +19,13 @@ const TodoList = () => {
     const createNewTodo = (newItem) => {
         console.log('newitem in todolist:', newItem);
         dispatch(addNewTodoItem(newItem));
-        console.log('updated todos:', todoStoreItems);
+       // console.log('updated todos:', todoStoreItems);
         setIsModalOpen(false);
     }
+
+    useEffect(() => {
+        console.log('current active todos: ', todoStoreItems)
+    }, [todoStoreItems]);
 
     return (
         <>
