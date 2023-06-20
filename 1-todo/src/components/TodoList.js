@@ -9,6 +9,7 @@ import {addNewTodoItem} from "../store/TodoActions";
 const TodoList = () => {
     let todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newTodos, setNewTodos] = useState([]);
     const dispatch = useDispatch();
 
     const addNewTodo = () => {

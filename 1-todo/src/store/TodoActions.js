@@ -1,7 +1,7 @@
 const COMPLETE_TODO = 'COMPLETE_TODO';
 const EDIT_TODO = 'EDIT_TODO';
 const DELETE_TODO = 'DELETE_TODO';
-const ADD_NEW_TODO_ITEM = 'ADD_NEW_TODO';
+const ADD_NEW_TODO_ITEM = 'ADD_NEW_TODO_ITEM';
 
 const completeTodo = (id) => {
     return { type: COMPLETE_TODO, todoId: id };
