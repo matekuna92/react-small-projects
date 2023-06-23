@@ -46,6 +46,8 @@ const todosReducer = (state = initialState, action) => {
         }
         case 'EDIT_TODO': {
             console.log('edit:');
+            const todoIndex = state.todos.findIndex(todo => todo.id === action.todoId);
+            
 
             return state;
         }

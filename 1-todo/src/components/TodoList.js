@@ -9,6 +9,7 @@ import {addNewTodoItem} from "../store/TodoActions";
 const TodoList = () => {
     let todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isTodoEdited, setIsTodoEdited] = useState(false);
     const dispatch = useDispatch();
 
     const toggleModal = () => {
@@ -38,6 +39,7 @@ const TodoList = () => {
                         title={todo.title}
                         desc={todo.desc}
                         image={todo.image}
+                        onTodoEdit={toggleModal}
                     />
                 ))}
             </ul>

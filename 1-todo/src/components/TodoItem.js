@@ -16,7 +16,8 @@ const TodoItem = (props) => {
     }
 
     const todoEditHandler = () => {
-        dispatch(editTodo(props.id));
+        props.onTodoEdit();
+        //dispatch(editTodo(props.id));
     }
 
     const todoDeleteHandler = () => {
