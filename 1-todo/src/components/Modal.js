@@ -13,8 +13,8 @@ const Modal = (props) => {
     const maxId = todoStoreItems.reduce((max, todo) => {
         return todo.id > max ? todo.id : max;
       }, 0);
-    console.log('maxTodoId: ', maxId);
 
+    const isEditing = props.edited;
 
     const addNewTodo = () => {
         const title = titleRef.current.value;
@@ -39,7 +39,7 @@ const Modal = (props) => {
         <Backdrop onClick={closeModal} />
         <div className='modal'>
            <div className='modal-header'>
-               <h2>Add new Todo</h2>
+               <h2>{isEditing ? 'Edit Todo' : 'Add new Todo'}</h2>
               <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
             </div>
             <div className='modal-body'>
@@ -49,7 +49,7 @@ const Modal = (props) => {
                 <input type='textarea' id='description' ref={descRef} />
             </div>
             <div className='modal-footer'>
-                <button className='modal-add-button' onClick={addNewTodo}>Add</button>
+                <button className='modal-add-button' onClick={addNewTodo}>{isEditing ? 'Edit' : 'Add'}</button>
                 <button className='modal-cancel-button' onClick={closeModal}>Cancel</button>
             </div>
         </div>
