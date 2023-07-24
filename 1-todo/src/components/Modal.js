@@ -15,6 +15,7 @@ const Modal = (props) => {
       }, 0);
 
     const isEditing = props.edited;
+    const { title, desc } = props.editedItem || {};
 
     const addNewTodo = () => {
         const title = titleRef.current.value;
@@ -34,6 +35,10 @@ const Modal = (props) => {
         props.toggleModal();
     }
 
+    const editTodo = () => {
+        props.onEditTodo();
+    }
+
     return (
         <>
         <Backdrop onClick={closeModal} />
@@ -44,12 +49,12 @@ const Modal = (props) => {
             </div>
             <div className='modal-body'>
                 <label htmlFor='title'>Title</label>
-                <input type='text' id='title' ref={titleRef}/>
+                <input type='text' id='title' ref={titleRef} value={title !=null ? title : props.title} />
                 <label htmlFor='description'>Description</label>
-                <input type='textarea' id='description' ref={descRef} />
+                <input type='textarea' id='description' ref={descRef} value={desc !=null ? desc : props.desc} />
             </div>
             <div className='modal-footer'>
-                <button className='modal-add-button' onClick={addNewTodo}>{isEditing ? 'Edit' : 'Add'}</button>
+                <button className='modal-add-button' onClick={isEditing ? editTodo : addNewTodo}>{isEditing ? 'Edit' : 'Add'}</button>
                 <button className='modal-cancel-button' onClick={closeModal}>Cancel</button>
             </div>
         </div>

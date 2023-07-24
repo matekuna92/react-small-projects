@@ -10,6 +10,7 @@ const TodoList = () => {
     let todoStoreItems = useSelector(state => state.todoItems.todos.filter(todo => !todo.completed));
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isTodoEdited, setIsTodoEdited] = useState(false);
+    const [editedItem, setEditedItem] = useState(null);
     const dispatch = useDispatch();
 
     const toggleModal = (isEdited) => {
@@ -25,8 +26,10 @@ const TodoList = () => {
         setIsModalOpen(false);
     }
 
-    const editTodo = () => {
+    const editTodo = (todo) => {
+        setEditedItem(todo);
         toggleModal(true);
+        console.log('currently edited item:', todo);
     }
 
     const handleAddButtonClick = () => {
@@ -40,7 +43,12 @@ const TodoList = () => {
     return (
         <>
             <button className='add-todo-button' onClick={handleAddButtonClick}>Add ToDo</button>
-            {isModalOpen && <Modal open={isModalOpen} onAddNewTodo={createNewTodo} toggleModal={toggleModal} edited={isTodoEdited} />}
+            {isModalOpen && <Modal open={isModalOpen}
+                onAddNewTodo={createNewTodo}
+                toggleModal={toggleModal}
+                edited={isTodoEdited}
+                editedItem={editedItem}
+            />}
             <ul className='todo-list'>
                 {todoStoreItems.map(todo => (
                     <TodoItem
@@ -49,7 +57,7 @@ const TodoList = () => {
                         title={todo.title}
                         desc={todo.desc}
                         image={todo.image}
-                        onTodoEdit={editTodo}
+                        onTodoEdit={() => editTodo(todo)}
                     />
                 ))}
             </ul>

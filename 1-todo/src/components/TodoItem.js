@@ -7,7 +7,6 @@ import { faCheck, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { completeTodo, editTodo, deleteTodo } from '../store/TodoActions';
 import { useDispatch } from 'react-redux';
 
-
 const TodoItem = (props) => {
     const dispatch = useDispatch();
 
