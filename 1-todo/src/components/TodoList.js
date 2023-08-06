@@ -26,11 +26,16 @@ const TodoList = () => {
         setIsModalOpen(false);
     }
 
-    const editTodo = (todo) => {
-        setEditedItem(todo);
+    const editTodo = (todo, updates) => {
+        console.log('todo and updates: \n', todo, updates);
+        setEditedItem({
+          ...todo,
+          ...updates
+        });
+      
         toggleModal(true);
-        console.log('currently edited item:', todo);
-    }
+        console.log('todo after setEditedItem: ', todo);
+      };
 
     const handleAddButtonClick = () => {
         toggleModal(false);
@@ -48,14 +53,15 @@ const TodoList = () => {
                 toggleModal={toggleModal}
                 edited={isTodoEdited}
                 editedItem={editedItem}
+                onEditTodo={editTodo}
             />}
             <ul className='todo-list'>
                 {todoStoreItems.map(todo => (
                     <TodoItem
                         id={todo.id}
                         key={todo.id}
-                        title={todo.title}
-                        desc={todo.desc}
+                        title={editedItem != null ? editedItem.title : todo.title}
+                        desc={editedItem != null ? editedItem.desc : todo.desc}
                         image={todo.image}
                         onTodoEdit={() => editTodo(todo)}
                     />
